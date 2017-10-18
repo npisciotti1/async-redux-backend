@@ -1,0 +1,29 @@
+{
+  "name": "async-redux-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "mocha",
+    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
+    "stop-db": "killall mongod"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "mongoose": "4.10.8",
+    "morgan": "^1.9.0"
+  },
+  "devDependencies": {
+    "expect": "^21.2.1",
+    "faker": "^4.1.0",
+    "mocha": "^4.0.1",
+    "superagent": "^3.6.3"
+  }
+}
