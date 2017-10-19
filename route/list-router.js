@@ -38,3 +38,16 @@ listRouter.get('/api/lists', (req, res, next) => {
   .then(lists => res.json(lists))
   .catch(next);
 })
+
+listRouter.put('/api/lists/:id', jsonParser, (req, res, next) => {
+  console.log('PUT /api/lists/:id');
+
+  let options = {
+    new: true,
+    runValidators: true
+  }
+
+  List.findByIdAndUpdate(req.params.id, req.body, options)
+  .then(list => res.json(list))
+  .catch(next);
+})
