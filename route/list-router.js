@@ -51,3 +51,11 @@ listRouter.put('/api/lists/:id', jsonParser, (req, res, next) => {
   .then(list => res.json(list))
   .catch(next);
 })
+
+listRouter.delete('/api/lists/:id', (req, res, next) => {
+  console.log('DELETE /api/lists/:id');
+
+  List.findByIdAndRemove(req.params.id)
+  .then( () => res.sendStatus(204))
+  .catch(next);
+})
