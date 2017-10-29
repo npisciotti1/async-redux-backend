@@ -1,0 +1,19 @@
+'use strict';
+
+const Tesseract = require('node-tesseract');
+const jsonParser = require('body-parser').json();
+const analyzeRouter = module.exports = new require('express').Router();
+
+
+analyzeRouter.post('/api/analyze', jsonParser, (req, res, next) => {
+  console.log('POST /api/analyze');
+
+  console.log('got a request:', req.body);
+
+  Tesseract.process(req.body, (err, text) => {
+    if(err) next(new Error('couldnt extract text'))
+
+    console.log(text);
+  })
+
+})
