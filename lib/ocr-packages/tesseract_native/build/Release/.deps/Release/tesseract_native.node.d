@@ -1,0 +1,1 @@
+cmd_Release/tesseract_native.node := c++ -bundle -undefined dynamic_lookup -Wl,-no_pie -Wl,-search_paths_first -mmacosx-version-min=10.7 -arch x86_64 -L./Release  -o Release/tesseract_native.node Release/obj.target/tesseract_native/addon.o Release/obj.target/tesseract_native/ocreio.o -L/usr/local/lib -llept -ltesseract

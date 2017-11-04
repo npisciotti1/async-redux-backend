@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 // const Tesseract = require('node-tesseract');
-const extract = new require('tesseract_native').OcrEio();
+const extract = new require('../lib/ocr-packages/tesseract_native').OcrEio();
 const analyzeRouter = module.exports = new require('express').Router();
 
 analyzeRouter.post('/api/analyze', (req, res, next) => {
