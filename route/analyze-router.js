@@ -1,8 +1,6 @@
 'use strict';
 
 const fs = require('fs');
-// const Tesseract = require('node-tesseract');
-const extract = new require('../lib/ocr-packages/tesseract_native').OcrEio();
 const analyzeRouter = module.exports = new require('express').Router();
 
 analyzeRouter.post('/api/analyze', (req, res, next) => {
@@ -14,14 +12,6 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
   fs.readFile(imgPathWithExt, (err, data) => {
     if (err) next(new Error('file not found'));
 
-    extract.ocr(data, (err, results) => {
-      if (err) next(new Error('couldnt extract text'));
-
-      res.send(results);
-      fs.unlink(imgPathWithExt, err => {
-        if (err) next(new Error(('couldnt delete image')));
-      });
-    })
   })
 
 });
