@@ -9,6 +9,10 @@
     "start-db": "mkdir -p ./db && mongod --dbpath ./db",
     "stop-db": "killall mongod"
   },
+  "engines": {
+    "node": "6.9.5",
+    "npm": "3.10.10"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
