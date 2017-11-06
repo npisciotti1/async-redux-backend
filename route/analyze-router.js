@@ -45,5 +45,4 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
       fs.unlink(imgPathWithExt, err => next(err))
     })
   })
-
 });
