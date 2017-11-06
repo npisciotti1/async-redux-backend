@@ -8,6 +8,7 @@ const analyzeRouter = module.exports = new require('express').Router();
 analyzeRouter.post('/api/analyze', (req, res, next) => {
   console.log('POST /api/analyze');
 
+  //add filename extension to uploaded image
   let imgPathWithExt = req.files.imageToExtract.path + '.jpeg';
   fs.rename(req.files.imageToExtract.path, imgPathWithExt);
 
@@ -29,6 +30,7 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
   fs.readFile(imgPathWithExt, 'base64', (err, data) => {
     if (err) next(new Error('file not found'));
 
+    //set base64 data on Google Vision request body
     body.requests[0].image.content = data;
 
     superagent.post(`https://vision.googleapis.com/v1/images:annotate`)
@@ -38,6 +40,9 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
     .end((err, visionResult) => {
       if(err) next(new Error('couldnt upload to Google Cloud Vision'))
       res.send(visionResult.body);
+
+      //delete temp file
+      fs.unlink(imgPathWithExt, err => next(err))
     })
   })
 
