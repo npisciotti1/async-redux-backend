@@ -2,13 +2,17 @@
 
 const fs = require('fs');
 const superagent = require('superagent');
-const analyzeRouter = module.exports = new require('express').Router();
+const analyzeRouter = module.exports = new require('express').Router()
 
+analyzeRouter.get('/', (req, res, next) => {
+  res.status(200).json({cool: 'beans'});
+
+})
 
 analyzeRouter.post('/api/analyze', (req, res, next) => {
   console.log('POST /api/analyze');
 
-  //add filename extension to uploaded image
+  //build this out as middleware
   let imgPathWithExt = req.files.imageToExtract.path + '.jpeg';
   fs.rename(req.files.imageToExtract.path, imgPathWithExt);
 
@@ -34,7 +38,7 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
     body.requests[0].image.content = data;
 
     superagent.post(`https://vision.googleapis.com/v1/images:annotate`)
-    .query({key: process.env.GOOGLE_API_KEY})
+    .query({ key: process.env.GOOGLE_API_KEY })
     .set('Content-Type', 'application/json')
     .send(body)
     .end((err, visionResult) => {
