@@ -39,7 +39,7 @@ analyzeRouter.post('/api/analyze', (req, res, next) => {
     .send(body)
     .end((err, visionResult) => {
       if(err) next(new Error('couldnt upload to Google Cloud Vision'))
-      res.send(visionResult.body);
+      res.status(200).json(visionResult.body);
 
       //delete temp file
       fs.unlink(imgPathWithExt, err => next(err))
