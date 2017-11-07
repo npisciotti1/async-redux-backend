@@ -5,9 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha",
-    "start-db": "mkdir -p ./db && mongod --dbpath ./db",
-    "stop-db": "killall mongod"
+    "test": "mocha"
   },
   "engines": {
     "node": "6.9.5",

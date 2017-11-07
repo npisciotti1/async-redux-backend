@@ -1,1 +1,1 @@
-* Two-resource API for frontend Async Redux App
+* Node/Express Server for React Native App
