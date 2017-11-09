@@ -16,9 +16,7 @@ analyzeRouter.post('/api/analyze', imageParse, (req, res, next) => {
   textExtract(req.headers.imagePath)
   .then(text => {
     res.status(200).send(text)
-
-    //delete temp file
-    fs.unlink(req.headers.imagePath, err => next(err))
+    return next();
   })
-  .catch(next)
+  .catch(err => next(err));
 });
