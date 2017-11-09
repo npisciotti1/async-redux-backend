@@ -13,10 +13,12 @@ analyzeRouter.get('/', (req, res, next) => {
 analyzeRouter.post('/api/analyze', imageParse, (req, res, next) => {
   console.log('POST /api/analyze');
 
-  return textExtract(req.headers.imagePath)
-  .then(text => res.status(200).send(text))
-  .catch(next)
+  textExtract(req.headers.imagePath)
+  .then(text => {
+    res.status(200).send(text)
 
-  //delete temp file
-  fs.unlink(req.headers.imagePath, err => next(err))
+    //delete temp file
+    fs.unlink(req.headers.imagePath, err => next(err))
+  })
+  .catch(next)
 });
