@@ -14,7 +14,7 @@ analyzeRouter.post('/api/analyze', imageParse, (req, res, next) => {
   console.log('POST /api/analyze');
 
   return textExtract(req.headers.imagePath)
-  .then(text => res.json(text))
+  .then(text => res.status(200).send(text))
   .catch(next)
 
   //delete temp file
