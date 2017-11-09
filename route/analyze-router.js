@@ -13,7 +13,7 @@ analyzeRouter.get('/', (req, res, next) => {
 analyzeRouter.post('/api/analyze', imageParse, (req, res, next) => {
   console.log('POST /api/analyze');
 
-  textExtract(req.headers.imagePath)
+  return textExtract(req.headers.imagePath)
   .then(text => res.json(text))
   .catch(next)
 
